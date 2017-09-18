@@ -5,7 +5,7 @@ var User = require('./models/user'); // include user model
 var requireAuth = passport.authenticate('jwt', {session: false}); // routes with this require authentication to see
 
 module.exports = function (app) {
-	app.get('/', function (req, res, next) {
+	app.get('/', requireAuth, function (req, res, next) { // a route that requires authentication
 		res.send('HELLO HOMEPAGE');
 	});
 	app.get('/signup', function (req, res, next) {
