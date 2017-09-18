@@ -1,5 +1,8 @@
 var Auth = require('./controllers/auth'); // include authorization controller
+var passportService = require('./services/passport'); // our service that uses passport.
+var passport = require('passport'); // passport itself
 var User = require('./models/user'); // include user model
+var requireAuth = passport.authenticate('jwt', {session: false}); // routes with this require authentication to see
 
 module.exports = function (app) {
 	app.get('/', function (req, res, next) {
