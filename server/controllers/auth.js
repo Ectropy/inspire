@@ -38,4 +38,10 @@ exports.signup = function (req, res, next) {
 			res.json({token: createUserToken(user)}); // send user their jwt token.
 		});
 	});
+
+	exports.signin = function (req, res, next) {
+		// User has already had their email and pw authed
+		// we just need to give them a token
+		res.send({token: createUserToken(req.user)});
+	};
 };
