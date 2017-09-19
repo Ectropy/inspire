@@ -6,7 +6,7 @@ class SearchBar extends Component {
 
 		this.state = { term: 'bucketlist' };
 	}
-	render(){
+	render () {
 		return (
 			<div className="search-bar">
 				<label className="vidSearchLbl">

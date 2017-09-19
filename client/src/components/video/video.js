@@ -5,6 +5,7 @@ import YTSearch from 'youtube-api-search';
 import SearchBar from './search-bar';
 import VideoDetail from './video-detail';
 
+// https://console.developers.google.com to get/manage API keys
 const API_KEY = 'AIzaSyAOwEODGp6-L5CFag0bX3K3BOUoeqNActE';
 
 class Video extends Component {
