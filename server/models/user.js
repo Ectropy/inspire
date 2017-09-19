@@ -15,6 +15,7 @@ userSchema.pre('save', function (next) {
 	bcrypt.genSalt(10, function (err, salt) {
 		if (err) { return next(err); }
 
+		// Accepts user password, salt, and variable used for progress if desired (null because we don't care about progress)
 		bcrypt.hash(user.password, salt, null, function (err, hash) {
 			if (err) { return next(err); }
 			user.password = hash;
