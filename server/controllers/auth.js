@@ -8,7 +8,6 @@ function createUserToken (user) {
 }
 
 exports.signup = function (req, res, next) {
-	// 1
 	var email = req.body.email;
 	var password = req.body.password;
 
@@ -23,10 +22,8 @@ exports.signup = function (req, res, next) {
 
 		if (existingUser) {
 			return res.status(403).send({error: 'Email is in use.'});
-			//
 		}
 
-		// 3
 		var user = new User({
 			email: email,
 			password: password
@@ -38,10 +35,11 @@ exports.signup = function (req, res, next) {
 			res.json({token: createUserToken(user)}); // send user their jwt token.
 		});
 	});
+};
 
-	exports.signin = function (req, res, next) {
-		// User has already had their email and pw authed
-		// we just need to give them a token
-		res.send({token: createUserToken(req.user)});
-	};
+exports.signin = function (req, res, next) {
+	// User has already had their email and pw authed
+	// we just need to give them a token
+	console.log('sending token');
+	res.send({token: createUserToken(req.user)});
 };
