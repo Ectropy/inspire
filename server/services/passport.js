@@ -14,8 +14,19 @@ var localLogin = new LocalStrategy(localOptions, function (email, password, done
 		if (err) { return done(err); }
 		// if it's not the same, it will return false and say they didn't match up
 		if (!user) { return done(null, false); }
-		// if same, it will call passport callback with user model
-		return done(null, user);
+
+		// compare passwords - is password equal to user.password?
+		// compare pw from req with users saved pw
+		user.comparePassword(password, function (err, isMatch) {
+			// if there was an error, return early
+			if (err) { return done(err); }
+			console.log('isMatch is ' + isMatch);
+			// if it's not the same , it will return false and say thay they didn't match up.
+			if (!isMatch) { return done(null, false); }
+
+			// if same, it will call passport callback with user model
+			return done(null, user);
+		});
 	});
 });
 
