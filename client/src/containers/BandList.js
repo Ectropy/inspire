@@ -20,7 +20,7 @@ class BandList extends Component {
 }
 
 // takes app state as arg
-// whatever gets returned will show up as props inside of  band list
+// whatever gets returned will show up as props inside of band list
 
 function mapStateToProps (state) {
 	return {
