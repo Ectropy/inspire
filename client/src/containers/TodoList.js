@@ -26,9 +26,7 @@ class TodoList extends Component {
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						{this.renderList()}
-					</tr>
+					{this.renderList()}
 				</tbody>
 			</Table>
 		);
