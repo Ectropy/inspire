@@ -6,7 +6,7 @@ export default function () {
 		},
 		{
 			name: 'Led Zepplin',
-			image: 'images/ledzepplin.jpg'
+			image: 'images/ledzeppelin.jpg'
 		},
 		{
 			name: 'Bob Dylan',
