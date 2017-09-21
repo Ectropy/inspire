@@ -7,7 +7,7 @@ var requireSignin = passport.authenticate('local', {session: false}); // routes 
 
 module.exports = function (app) {
 	app.get('/', requireAuth, function (req, res, next) { // a route that requires authentication
-		res.send('HELLO HOMEPAGE');
+		res.send({message: 'hey'});
 	});
 	app.get('/signup', function (req, res, next) {
 		res.send('Hey folks, thanks for signing up!');
