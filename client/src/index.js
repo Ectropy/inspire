@@ -5,7 +5,7 @@ import { createStore, applyMiddleware } from 'redux';
 
 import App from './components/app';
 import Signin from './components/auth/signin';
-import Newitem from './components/newitem';
+import Newitem from './components/list/newitem';
 import reducers from './reducers';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 
