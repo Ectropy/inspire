@@ -5,6 +5,7 @@ import { createStore, applyMiddleware } from 'redux';
 
 import App from './components/app';
 import Signin from './components/auth/signin';
+import Newitem from './components/newitem';
 import reducers from './reducers';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 
@@ -15,6 +16,7 @@ ReactDOM.render(
 		<Router history={browserHistory}>
 			<Route path="/" component={App}>
 				<Route path="signin" component={Signin} />
+				<Route path="newitem" component={Newitem} />
 			</Route>
 		</Router>
 	</Provider>
