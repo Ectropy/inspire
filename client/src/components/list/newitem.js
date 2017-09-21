@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import { reduxForm } from 'redux-form';
+import { createPost } from '../../actions/index';
+import { Link } from 'react-router';
 import { Button } from 'react-bootstrap';
 
 class Newitem extends Component {
-	handleFormSubmit ({title, category, url, content}) {
-		console.log(title, category, url, content);
+	handleFormSubmit (formProps) {
+		console.log(formProps.title, formProps.category, formProps.url, formProps.content);
+		this.props.createPost(formProps);
 	}
 	render () {
 		const {handleSubmit, fields: { title, category, url, content }} = this.props;
@@ -37,4 +40,4 @@ class Newitem extends Component {
 export default reduxForm({
 	form: 'newitem',
 	fields: ['title', 'category', 'url', 'content']
-})(Newitem);
+}, null, { createPost })(Newitem);
