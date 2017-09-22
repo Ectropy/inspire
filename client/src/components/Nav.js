@@ -8,8 +8,20 @@ import {
   MenuItem,
   CollapsibleNav
 } from 'react-bootstrap'
+import { connect } from 'react-redux'
+import { Link } from 'react-router'
 
 class NavBarHeader extends Component {
+  renderLinks () {
+    if (this.props.authenticated) {
+      return <NavItem href='/signout'>Sign Out </NavItem>
+    } else {
+      return [
+        <NavItem key={1} href='/signin'>Sign In</NavItem>,
+        <NavItem key={2} href='/signup'>Sign Up</NavItem>
+      ]
+    }
+  }
   render () {
     return (
       <Navbar>
@@ -19,18 +31,13 @@ class NavBarHeader extends Component {
           </Navbar.Brand>
         </Navbar.Header>
         <Nav>
-          <NavItem eventKey={1} href='#'>
-            Sign In
-          </NavItem>
-          <NavItem eventKey={2} href='#'>
-            Sign Up
-          </NavItem>
-          <NavDropdown eventKey={3} title='Cool Stuff' id='basic-nav-dropdown'>
-            <MenuItem eventKey={3.1}>Action</MenuItem>
-            <MenuItem eventKey={3.2}>Another action</MenuItem>
-            <MenuItem eventKey={3.3}>Something else here</MenuItem>
+          {this.renderLinks()}
+          <NavDropdown key={3} title='Cool Stuff' id='basic-nav-dropdown'>
+            <MenuItem key={3.1}>Action</MenuItem>
+            <MenuItem key={3.2}>Another action</MenuItem>
+            <MenuItem key={3.3}>Something else here</MenuItem>
             <MenuItem divider />
-            <MenuItem eventKey={3.4}>Separated link</MenuItem>
+            <MenuItem key={3.4}>Separated link</MenuItem>
           </NavDropdown>
         </Nav>
       </Navbar>
@@ -38,4 +45,10 @@ class NavBarHeader extends Component {
   }
 }
 
-export default NavBarHeader
+function mapStateToProps (state) {
+  return {
+    authenticated: state.auth.authenticated
+  }
+}
+
+export default connect(mapStateToProps)(NavBarHeader)
