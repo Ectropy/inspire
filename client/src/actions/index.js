@@ -1,5 +1,9 @@
+/* eslint-env browser */
+// The above line stops eslint from showing an noundef error when using localStorage
 import axios from 'axios'
 import { browserHistory } from 'react-router'
+import { AUTH_USER, UNAUTH_USER } from './types'
+import authReducer from '../reducers/reducer_auth'
 
 // const ROOT_URL = 'http://rest.learncode.academy/api/paul';
 const ROOT_URL = 'http://localhost:3000'
@@ -29,6 +33,13 @@ export function signinUser ({ email, password }) {
     axios
       .post(`${ROOT_URL}/signin`, { email, password })
       .then(response => {
+        // This only occurs if the request was good.
+        // We now update the state to indicate authenticated user
+        dispatch({type: AUTH_USER})
+
+        // Put the token in localStorage.
+        localStorage.setItem('token', response.data.token)
+        // This sends us to the /newitem view.
         browserHistory.push('/newitem')
       })
       .catch(() => {})
