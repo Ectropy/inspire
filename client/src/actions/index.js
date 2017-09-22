@@ -35,6 +35,21 @@ export function createPost (props) {
   }
 }
 
+export function signupUser ({email, password}) {
+  return function (dispatch) {
+    // Submit email/password to the server
+    axios
+    .post(`${ROOT_URL}/signup`, { email, password })
+    .then(response => {
+      dispatch({type: AUTH_USER})
+
+      // update the token
+      localStorage.setItem('token', response.data.token)
+      browserHistory.push('/newItem')
+    })
+  }
+}
+
 export function signinUser ({ email, password }) {
   return function (dispatch) {
     axios
